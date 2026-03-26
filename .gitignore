@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+Thumbs.db
+
+# Claude Code
+.claude/
+
+# Build artifacts
+*.zip
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+
+# Dependencies
+node_modules/
+vendor/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Legacy working directory
+itsmeduncan-theme-work/
