@@ -28,6 +28,15 @@
         <meta property="og:image" content="<?php echo esc_url( $og_image ); ?>">
     <?php endif; ?>
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="<?php echo $og_image ? 'summary_large_image' : 'summary'; ?>">
+    <meta name="twitter:site" content="@itsmeduncan">
+    <meta name="twitter:title" content="<?php echo esc_attr( $og_title ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $og_description ); ?>">
+    <?php if ( $og_image ) : ?>
+        <meta name="twitter:image" content="<?php echo esc_url( $og_image ); ?>">
+    <?php endif; ?>
+
     <?php
     // JSON-LD Schema Markup
     if ( is_front_page() ) :

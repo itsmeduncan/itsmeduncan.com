@@ -403,15 +403,31 @@ function itsmeduncan_get_featured_posts( $count = 4 ) {
 }
 
 /* ------------------------------------------
-   REDIRECT PAGINATED FRONT PAGE TO BLOG
+   REDIRECTS
    ------------------------------------------ */
-function itsmeduncan_redirect_front_page_pagination() {
+function itsmeduncan_redirects() {
+    // Paginated front page → blog archive
     if ( is_front_page() && is_paged() ) {
         wp_safe_redirect( home_url( '/blog/' ), 301 );
         exit;
     }
+
+    // Old /contact/ → About page
+    if ( is_404() ) {
+        $path = trim( $_SERVER['REQUEST_URI'], '/' );
+        if ( preg_match( '#^contact/?$#i', $path ) ) {
+            wp_redirect( home_url( '/about-duncan-grazier/' ), 301 );
+            exit;
+        }
+    }
+
+    // Old /category/leadership/ → /category/engineering-leadership/
+    if ( is_category( 'leadership' ) ) {
+        wp_redirect( home_url( '/category/engineering-leadership/' ), 301 );
+        exit;
+    }
 }
-add_action( 'template_redirect', 'itsmeduncan_redirect_front_page_pagination' );
+add_action( 'template_redirect', 'itsmeduncan_redirects' );
 
 /* ------------------------------------------
    EXCERPT LENGTH
@@ -440,6 +456,7 @@ function itsmeduncan_fallback_menu() {
     echo '<li><a href="' . esc_url( home_url( '/about-duncan-grazier/' ) ) . '">' . esc_html__( 'About', 'itsmeduncan' ) . '</a></li>';
     echo '<li><a href="' . esc_url( home_url( '/category/ai-and-implementation/' ) ) . '">' . esc_html__( 'AI & Implementation', 'itsmeduncan' ) . '</a></li>';
     echo '<li><a href="' . esc_url( home_url( '/category/engineering-leadership/' ) ) . '">' . esc_html__( 'Leadership', 'itsmeduncan' ) . '</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/speaking-media/' ) ) . '">' . esc_html__( 'Speaking & Media', 'itsmeduncan' ) . '</a></li>';
     echo '</ul>';
 }
 
