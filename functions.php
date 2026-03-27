@@ -346,8 +346,18 @@ function itsmeduncan_category_badge( $post_id = null, $linked = true ) {
     $categories = get_the_category( $post_id );
     if ( empty( $categories ) ) return;
 
-    $cat   = $categories[0];
-    $slug  = $cat->slug;
+    // When a post has multiple categories, prefer the most specific one
+    // (skip AI & Implementation if there's a more specific category)
+    $cat = $categories[0];
+    if ( count( $categories ) > 1 ) {
+        foreach ( $categories as $c ) {
+            if ( $c->slug !== 'ai-and-implementation' ) {
+                $cat = $c;
+                break;
+            }
+        }
+    }
+    $slug = $cat->slug;
     $class = 'category-badge';
 
     // Map categories to color variants
@@ -406,19 +416,18 @@ function itsmeduncan_get_featured_posts( $count = 4 ) {
    REDIRECTS
    ------------------------------------------ */
 function itsmeduncan_redirects() {
-    // Paginated front page → blog archive
-    if ( is_front_page() && is_paged() ) {
-        wp_safe_redirect( home_url( '/blog/' ), 301 );
+    $path = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+
+    // /page/N/ → /blog/ (old homepage pagination)
+    if ( preg_match( '#^page/\d+/?$#', $path ) ) {
+        wp_redirect( home_url( '/blog/' ), 301 );
         exit;
     }
 
     // Old /contact/ → About page
-    if ( is_404() ) {
-        $path = trim( $_SERVER['REQUEST_URI'], '/' );
-        if ( preg_match( '#^contact/?$#i', $path ) ) {
-            wp_redirect( home_url( '/about-duncan-grazier/' ), 301 );
-            exit;
-        }
+    if ( preg_match( '#^contact/?$#i', $path ) ) {
+        wp_redirect( home_url( '/about-duncan-grazier/' ), 301 );
+        exit;
     }
 
     // Old /category/leadership/ → /category/engineering-leadership/
