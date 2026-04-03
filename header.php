@@ -126,7 +126,7 @@
             'theme_location' => 'primary',
             'container'      => false,
             'menu_class'     => 'nav-menu',
-            'depth'          => 1,
+            'depth'          => 2,
             'fallback_cb'    => 'itsmeduncan_fallback_menu',
         ) );
         ?>

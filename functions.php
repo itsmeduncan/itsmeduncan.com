@@ -466,6 +466,10 @@ function itsmeduncan_fallback_menu() {
     echo '<li><a href="' . esc_url( home_url( '/category/ai-and-implementation/' ) ) . '">' . esc_html__( 'AI & Implementation', 'itsmeduncan' ) . '</a></li>';
     echo '<li><a href="' . esc_url( home_url( '/category/engineering-leadership/' ) ) . '">' . esc_html__( 'Leadership', 'itsmeduncan' ) . '</a></li>';
     echo '<li><a href="' . esc_url( home_url( '/speaking-media/' ) ) . '">' . esc_html__( 'Speaking & Media', 'itsmeduncan' ) . '</a></li>';
+    echo '<li class="menu-item-has-children"><a href="#">' . esc_html__( 'Projects', 'itsmeduncan' ) . '</a>';
+    echo '<ul class="sub-menu">';
+    echo '<li><a href="' . esc_url( home_url( '/slowdown/' ) ) . '">' . esc_html__( 'Slow Them Down', 'itsmeduncan' ) . '</a></li>';
+    echo '</ul></li>';
     echo '</ul>';
 }
 

@@ -187,6 +187,56 @@ p {
   color: var(--accent);
 }
 
+/* Dropdown submenus */
+.nav-menu .menu-item-has-children {
+  position: relative;
+}
+
+.nav-menu .menu-item-has-children > a::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-left: 5px;
+  vertical-align: 1px;
+}
+
+.nav-menu .sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 180px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  z-index: 100;
+}
+
+.nav-menu .menu-item-has-children:hover > .sub-menu {
+  display: block;
+}
+
+.nav-menu .sub-menu li {
+  padding: 0;
+}
+
+.nav-menu .sub-menu a {
+  display: block;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.nav-menu .sub-menu a:hover {
+  background: var(--bg-soft);
+}
+
 /* Mobile nav toggle */
 .nav-toggle {
   display: none;
@@ -224,6 +274,27 @@ p {
   .nav-menu li { padding: 12px 0; border-bottom: 1px solid var(--border); }
   .nav-menu li:last-child { border-bottom: none; }
   .nav-menu a { font-size: 16px; }
+  .nav-menu .sub-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .nav-menu .menu-item-has-children > .sub-menu {
+    display: block;
+  }
+  .nav-menu .sub-menu li {
+    padding: 8px 0 0 16px;
+    border-bottom: none;
+  }
+  .nav-menu .sub-menu a {
+    padding: 0;
+  }
+  .nav-menu .menu-item-has-children > a::after {
+    display: none;
+  }
 }
 
 /* ============================================
@@ -805,7 +876,7 @@ p {
 
 .footer-inner--expanded .footer-nav {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 32px;
 }
 
@@ -1577,6 +1648,15 @@ p {
       border-bottom-color: var(--border);
     }
     .nav-menu li { border-bottom-color: var(--border); }
+  }
+
+  .nav-menu .sub-menu {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .nav-menu .sub-menu a:hover {
+    background: #334155;
   }
 
   .featured-card {

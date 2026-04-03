@@ -53,6 +53,13 @@
                 </div>
 
                 <div class="footer-nav-group">
+                    <h4><?php esc_html_e( 'Projects', 'itsmeduncan' ); ?></h4>
+                    <ul>
+                        <li><a href="<?php echo esc_url( home_url( '/slowdown/' ) ); ?>"><?php esc_html_e( 'Slow Them Down', 'itsmeduncan' ); ?></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav-group">
                     <h4><?php esc_html_e( 'Connect', 'itsmeduncan' ); ?></h4>
                     <ul>
                         <?php if ( $linkedin = get_theme_mod( 'social_linkedin' ) ) : ?>
